@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { serverNextArchitecture } from "@caucolum/next-client-architecture";
 
 export default function Home() {
   return (
