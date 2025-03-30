@@ -13,7 +13,6 @@ interface HomePageProps {
 }
 
 export default function Home({  }: HomePageProps) {
-  
   console.log('serverNextClientArchitecture: ', serverNextClientArchitecture.breed_hound_images());
   return <div>
     hello home 
