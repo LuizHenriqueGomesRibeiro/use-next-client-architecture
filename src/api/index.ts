@@ -1,16 +1,34 @@
-import { ApiEndpoint } from "@caucolum/next-client-architecture";
+import { createServerNextArchitecture, createClientNextArchitecture, ApiEndpoint } from "@caucolum/next-client-architecture";
 
-export const BASE_URL = "https://dog.ceo/api";
+export interface BreedsImageRandomDataProps {
+    message: string;
+    status: string;
+}
 
-export const api = {
+export interface BreedHoundImagesDataProps {
+    message: string[];
+    status: string;
+}
+
+const api = {
     breeds_image_random: {
-        url: "breeds/image/random",
+        url: "https://dog.ceo/api/breeds/image/random",
         authenticated: false,
-        method: 'get'
+        method: 'get',
+        DATA_PROPS: {} as BreedsImageRandomDataProps,
     },
     breed_hound_images: {
-        url: "breed/hound/images",
+        url: "https://dog.ceo/api/breed/hound/images",
         authenticated: false,
-        method: 'get'
+        method: 'get',
+        DATA_PROPS: {} as BreedHoundImagesDataProps,
     },
 } as const satisfies Record<string, ApiEndpoint>;
+
+const nextArchitectureServer = createServerNextArchitecture(api);
+const nextArchitectureClient = createClientNextArchitecture(nextArchitectureServer, api);
+
+export {
+    nextArchitectureServer,
+    nextArchitectureClient
+}
